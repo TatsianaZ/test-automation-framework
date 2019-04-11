@@ -14,7 +14,6 @@ public class TestNGGrouping {
         //Print console that code is in @BeforeMethod!
         System.out.println("@BeforeTest has started.");
     }
-
     //-----------------------------------Tests-----------------------------------
     @Test(groups = {"Regression", "Smoke"})
     public void firstTest() {
