@@ -1,0 +1,41 @@
+plugins {
+    id 'java'
+}
+
+group 'com.thomsonreuters.restassured'
+version '1.0-SNAPSHOT'
+
+sourceCompatibility = 1.8
+targetCompatibility = 1.8
+
+repositories {
+    mavenCentral()
+}
+
+dependencies {
+    testCompile group: 'junit', name: 'junit', version: '4.12'
+    testCompile group: 'io.rest-assured', name: 'rest-assured', version: '3.3.0'
+    testCompile group: 'org.testng', name: 'testng', version: '6.14.3'
+}
+
+test { 
+    useTestNG() { //Tells Gradle to use TestNG
+        useDefaultListeners = true // Tells TestNG to execute its default reporting structure
+    }
+}
+
+task smokeTests(type: Test) { // we define a task with name ‘smokeTests’
+    useTestNG() {
+        useDefaultListeners = true
+        suites 'src/test/resources/suite.xml'
+        includeGroups 'Smoke' // We define the group name by using ‘includeGroups’ parameter.
+    }
+}
+
+task regressionTests(type: Test) { // we define a task with name ‘smokeTests’
+    useTestNG() {
+        useDefaultListeners = true
+        suites 'src/test/resources/suite.xml'
+        includeGroups 'Regression' // We define the group name by using ‘includeGroups’ parameter.
+    }
+}
