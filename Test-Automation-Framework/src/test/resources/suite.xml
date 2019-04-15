@@ -6,10 +6,12 @@
             <run>
                 <include name="Smoke"/>
                 <include name="Regression"/>
+                <include name="Rest API"/>
             </run>
         </groups>
         <classes>
             <class name="com.thomsonreuters.restassured.TestNGGrouping"></class>
+            <class name="com.thomsonreuters.restassured.SimpleGetTest"></class>
         </classes>
     </test>
 </suite>

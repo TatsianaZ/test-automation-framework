@@ -16,6 +16,7 @@ dependencies {
     testCompile group: 'junit', name: 'junit', version: '4.12'
     testCompile group: 'io.rest-assured', name: 'rest-assured', version: '3.3.0'
     testCompile group: 'org.testng', name: 'testng', version: '6.14.3'
+    testCompile group: 'org.assertj', name: 'assertj-core', version: '3.12.2'
 }
 
 test { 
@@ -32,10 +33,10 @@ task smokeTests(type: Test) { // we define a task with name ‘smokeTests’
     }
 }
 
-task regressionTests(type: Test) { // we define a task with name ‘smokeTests’
+task restAPITests(type: Test) { 
     useTestNG() {
         useDefaultListeners = true
         suites 'src/test/resources/suite.xml'
-        includeGroups 'Regression' // We define the group name by using ‘includeGroups’ parameter.
+        includeGroups 'Rest API'
     }
 }
