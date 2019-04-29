@@ -5,21 +5,28 @@ plugins {
 group 'com.thomsonreuters.restassured'
 version '1.0-SNAPSHOT'
 
-sourceCompatibility = 1.8
-targetCompatibility = 1.8
+sourceCompatibility = JavaVersion.VERSION_11
+targetCompatibility = JavaVersion.VERSION_11
 
 repositories {
     mavenCentral()
 }
 
 dependencies {
-    testCompile group: 'junit', name: 'junit', version: '4.12'
-    testCompile group: 'io.rest-assured', name: 'rest-assured', version: '3.3.0'
-    testCompile group: 'org.testng', name: 'testng', version: '6.14.3'
-    testCompile group: 'org.assertj', name: 'assertj-core', version: '3.12.2'
+    
+    compileOnly("org.projectlombok:lombok:1.18.6")
+    annotationProcessor("org.projectlombok:lombok:1.18.6")
+    
+    implementation group: 'org.json', name: 'json', version: '20180813'
+    implementation group: 'com.google.code.gson', name: 'gson', version: '2.8.5'
+
+    testImplementation  group: 'junit', name: 'junit', version: '4.12'
+    testImplementation  group: 'io.rest-assured', name: 'rest-assured', version: '3.3.0'
+    testImplementation  group: 'org.testng', name: 'testng', version: '6.14.3'
+    testImplementation  group: 'org.assertj', name: 'assertj-core', version: '3.12.2'
 }
 
-test { 
+test {
     useTestNG() { //Tells Gradle to use TestNG
         useDefaultListeners = true // Tells TestNG to execute its default reporting structure
     }
@@ -33,10 +40,18 @@ task smokeTests(type: Test) { // we define a task with name ‘smokeTests’
     }
 }
 
-task restAPITests(type: Test) { 
+task restApiGetTests(type: Test) {
     useTestNG() {
         useDefaultListeners = true
         suites 'src/test/resources/suite.xml'
-        includeGroups 'Rest API'
+        includeGroups 'Rest API GET'
+    }
+}
+
+task restApiPostTests(type: Test) {
+    useTestNG() {
+        useDefaultListeners = true
+        suites 'src/test/resources/suite.xml'
+        includeGroups 'Rest API POST'
     }
 }
