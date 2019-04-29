@@ -12,6 +12,7 @@
         <classes>
             <class name="com.thomsonreuters.restassured.TestNGGrouping"></class>
             <class name="com.thomsonreuters.restassured.SimpleGetTest"></class>
+            <class name="com.thomsonreuters.restassured.SimplePostTest"></class>
         </classes>
     </test>
 </suite>
